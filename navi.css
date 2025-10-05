@@ -1,0 +1,45 @@
+/* Header & Navigation */
+.navbar {
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    box-shadow: var(--shadow-md);
+}
+
+.navbar-brand {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--secondary-color) !important;
+}
+
+.nav-link {
+    padding: var(--space-xs) var(--space-sm) !important;
+    margin: 0 var(--space-xs);
+    font-weight: 500;
+    color: var(--text-color) !important;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+    background-color: var(--light-color);
+}
+
+.nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
