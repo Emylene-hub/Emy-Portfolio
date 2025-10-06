@@ -43,3 +43,41 @@
     color: var(--primary-color) !important;
     font-weight: 600;
 }
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background: #4da3ff;
+    border-radius: 2px;
+}
+.navbar-toggler-icon{
+    background-image:none;
+    width:28px; 
+    height:20px; 
+    display:inline-block; 
+    position:relative
+}
+.navbar-toggler-icon::before, .navbar-toggler-icon::after, .navbar-toggler-icon span{
+    content:'';
+    position:absolute;
+    left:0;right:0;
+    height:3px;
+    background:currentColor;
+    border-radius:2px
+}
+.navbar-toggler-icon::before{top:0}
+
+.navbar-toggler-icon span{
+    top:8px
+}
+
+.navbar-toggler-icon::after{
+    bottom:0
+}
+        
