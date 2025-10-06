@@ -11,20 +11,19 @@
     <link rel="icon" type="image/png" href="me.png">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navigation">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <img src="mylogo.png" alt="Logo" class="logo-image">
                 <span>Productivity App</span>
             </a>
-             <!-- Hamburger button for mobile -->
-                <div class="hamburger" id="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-                </div>
-            <ul class="nav-menu">
+                 <!-- Hamburger button for mobile -->
+                     <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                     </button>
+            <ul id="nav-menu" class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="BOOT.html" class="nav-link">Blog</a></li>
                 <li><a href="indexp.html" class="nav-link">Portfolio</a></li>
@@ -103,32 +102,43 @@
     </iframe>
     </div>   
   </div>
-</section>
+<script>
+  (function(){
+    function ready(fn){ if(document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
+    ready(function(){
+      var hamburger = document.getElementById('hamburger');
+      var navMenu = document.getElementById('nav-menu');
+      var navLinks = navMenu.querySelectorAll('a');
 
+      if(!hamburger || !navMenu) return;
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="social-icons">
-                <a href="nav.html" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/emylene.alegre.7" class="social-icon"><i class="fab fa-facebook"></i></a>
-                <a href="nav.html" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/emi_lin._/" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
+      function toggleMenu(open){
+        var isOpen = typeof open === 'boolean' ? open : !navMenu.classList.contains('active');
+        if(isOpen){
+          navMenu.classList.add('active');
+          hamburger.setAttribute('aria-expanded','true');
+        } else {
+          navMenu.classList.remove('active');
+          hamburger.setAttribute('aria-expanded','false');
+        }
+      }
+
+      hamburger.addEventListener('click', function(e){ toggleMenu(); });
+
+      // keyboard support (Enter / Space)
+      hamburger.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleMenu(); } });
+
+      // close menu on link click (mobile)
+      navLinks.forEach(function(link){ link.addEventListener('click', function(){ toggleMenu(false); }); });
+
+      // close on Escape
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ toggleMenu(false); } });
+    });
+  })();
+</script>
             <p class="copyright">© 2025 Productivity App. All rights reserved.</p>
         </div>
     </footer>
-<script>
-    {/* Select hamburger button and navigation menu  */}
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelectorAll('.nav-link');
-    hamburger.addEventListener('click', () => {
-        document.querySelector('.nav-menu').
-        classList.toggle('active');
-    });
-    hamburger.onclick = function() {
-        navMenu.classList.toggle('onclick');
-    }
-</script>
+
 </body>
 </html>
