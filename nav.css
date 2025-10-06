@@ -55,12 +55,19 @@
     display: none;
     flex-direction: column;
     cursor: pointer;
-    gap: 5px;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    padding: 6px;
 }
 
-.hamburger div {
-    width: 25px;
-    height: 3px;
-    background: #4da3ff;
-    border-radius: 2px;
+.hamburger span, .hamburger div {
+    display:block; width:26px; height:3px; background:#4da3ff; border-radius:3px;
+}
+
+/* Responsive: hide nav menu on smaller screens and show hamburger */
+@media (max-width:900px){
+    .hamburger{display:flex}
+    .nav-menu{display:none;flex-direction:column;gap:12px;background:transparent;padding:12px;position:absolute;top:64px;right:18px;border-radius:8px}
+    .nav-menu.active{display:flex}
 }
