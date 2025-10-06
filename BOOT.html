@@ -21,6 +21,22 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+        <!-- small fallback style for the toggler icon if Bootstrap's icon styles are missing -->
+        <style>
+            .navbar-toggler-icon{background-image:none; width:28px; height:20px; display:inline-block; position:relative}
+            .navbar-toggler-icon::before, .navbar-toggler-icon::after, .navbar-toggler-icon span{content:'';position:absolute;left:0;right:0;height:3px;background:currentColor;border-radius:2px}
+            .navbar-toggler-icon::before{top:0}
+            .navbar-toggler-icon span{top:8px}
+            .navbar-toggler-icon::after{bottom:0}
+        </style>
+                <!-- minimal collapse CSS to support toggling without Bootstrap JS -->
+                <style>
+                    .navbar-collapse{display:flex!important}
+                    @media (max-width:991px){
+                        .navbar-collapse{display:none!important;flex-direction:column;background:transparent;padding:10px}
+                        .navbar-collapse.show{display:block!important}
+                    }
+                </style>
 </head>
 
 <body>
@@ -32,7 +48,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="nav.html">Emy's Productivity App</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"><span></span></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
@@ -59,7 +75,7 @@
         <div class="jumbotron p-5 mb-4 bg-primary text-white rounded hero-section">
                 <h1 class="display-4 font-italic">Master Your Time. Amplify Your Success. The Emy Way.</h1>
                 <p class="lead my-3">
-                    Emy’s Productivity App is designed to help you master your time and amplify your success with smart, intuitive tools. Para iwas procastinate bff haha. Whether you're managing daily tasks, setting goals, or tracking progress, Emy empowers you to stay focused and organized effortlessly. Explore features that adapt to your workflow, read inspiring success stories from users who have transformed their productivity, and access valuable resources and support—all in one place. Step into a more productive life, the Emy way.
+                    Emy’s Productivity App is designed to help you master your time and amplify your success with smart, intuitive tools. It si Whether you're managing daily tasks, setting goals, or tracking progress, Emy empowers you to stay focused and organized effortlessly. Explore features that adapt to your workflow, read inspiring success stories from users who have transformed their productivity, and access valuable resources and support—all in one place. Step into a more productive life, the Emy way.
                 </p>
                 <p class="lead mb-0"><a href="nav.html" class="text-white font-weight-bold">Start Your Transformation →</a></p>
             </div>
@@ -242,7 +258,33 @@
             <a href="BOOT.html">Back to top</a> | <a href="nav.html">Privacy Policy</a> | <a href="nav.html">Terms of Service</a> | <a href="nav.html">Contact Support</a>
         </p>
     </footer>
+<script>
+    (function(){
+        function ready(fn){if(document.readyState!='loading')fn();else document.addEventListener('DOMContentLoaded',fn)}
+        ready(function(){
+            document.querySelectorAll('.navbar-toggler').forEach(function(btn){
+                btn.addEventListener('click', function(e){
+                    var targetSelector = btn.getAttribute('data-bs-target') || btn.getAttribute('data-target');
+                    if(!targetSelector) return;
+                    var target = document.querySelector(targetSelector);
+                    if(!target) return;
+                    var isShown = target.classList.toggle('show');
+                    btn.setAttribute('aria-expanded', isShown ? 'true' : 'false');
+                });
+            });
+
+            document.querySelectorAll('.navbar-nav a').forEach(function(link){
+                link.addEventListener('click', function(){
+                    var menu = document.querySelector('.navbar-collapse');
+                    if(menu && menu.classList.contains('show')){
+                        menu.classList.remove('show');
+                        document.querySelectorAll('.navbar-toggler').forEach(function(t){t.setAttribute('aria-expanded','false')});
+                    }
+                });
+            });
+        });
+    })();
+</script>
 </body>
 
 </html>
-
